@@ -19,7 +19,7 @@ const int num_days = 7;
 
 void readrunnerData(string runnernames[], double miles[][num_days]);
 void calculatetotals(double miles[][num_days],double totals[], double averages[]);
-void displayresults();
+void displayresults(string runnernames[], double miles[][num_days], double totals[], double averages[]);
 
 int main()
 {
@@ -30,6 +30,7 @@ int main()
 
 	readrunnerData(runnernames, miles);
 	calculatetotals(miles, totals, averages);
+	displayresults(runnernames, miles, totals, averages);
 
 
 	return 0;
@@ -76,3 +77,30 @@ int main()
 		}
 	}
 
+	void displayresults(string runnernames[], double miles[][num_days], double totals[], double averages[])
+	{
+		cout << fixed << setprecision(2);
+
+		cout << left << setw(12) << "Runner";
+
+		for (int day = 0;day < num_days;day++)
+		{
+			cout << setw(8) << "Day " + to_string(day + 1);
+		}
+		cout << setw(10) << "Total";
+		cout << setw(10) << "Average";
+		cout << endl;
+
+		for (int runner = 0; runner < num_runners; runner++)
+		{
+			cout << setw(12) << runnernames[runner];
+
+			for (int day = 0; day < num_days;day++)
+			{
+				cout << setw(8) << miles[runner][day];
+			}
+			cout << setw(10) << totals[runner];
+			cout << setw(10) << averages[runner];
+			cout << endl;
+		}
+	}
