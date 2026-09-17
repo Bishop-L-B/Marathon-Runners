@@ -18,7 +18,7 @@ const int num_runners = 5;
 const int num_days = 7;
 
 void readrunnerData(string runnernames[], double miles[][num_days]);
-void calculatetotals();
+void calculatetotals(double miles[][num_days],double totals[], double averages[]);
 void displayresults();
 
 int main()
@@ -29,6 +29,7 @@ int main()
 	double averages[num_runners];
 
 	readrunnerData(runnernames, miles);
+	calculatetotals(miles, totals, averages);
 
 
 	return 0;
@@ -59,5 +60,19 @@ int main()
 		}
 		inputFile.close();
 		
+	}
+
+	void calculatetotals(double miles[][num_days], double totals[], double averages[])
+	{
+		for (int runner = 0; runner < num_runners; runner++)
+		{
+			totals[runner] = 0;
+
+			for (int day = 0; day < num_days; day++)
+			{
+				totals[runner] += miles[runner][day];
+			}
+			averages[runner] = totals[runner] / num_days;
+		}
 	}
 
