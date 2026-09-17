@@ -30,5 +30,34 @@ int main()
 
 	readrunnerData(runnernames, miles);
 
+
 	return 0;
 }
+
+
+
+
+	void readrunnerData(string runnernames[], double miles[][num_days])
+	{
+		ifstream inputFile;
+
+		inputFile.open("runners.txt");
+
+		if (!inputFile)
+		{
+			cout << "Error opening runners.text" << endl;
+			return;
+		}
+		for (int runner = 0; runner < num_runners; runner++)
+		{
+			inputFile >> runnernames[runner];
+
+			for (int day = 0; day < num_days; day++)
+			{
+				inputFile >> miles[runner][day];
+			}
+		}
+		inputFile.close();
+		
+	}
+
